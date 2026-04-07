@@ -3,7 +3,7 @@
 Welcome to my corner of the internet.
 
 I'm a Technical & Customer Service Associate at Amazon,
-working on meaningful projects around operations,
+working on meaningful projects around operational efficiency,
 AI tools adoption, and workflow improvement.
 
 This space is where I document my work, share my thoughts,
