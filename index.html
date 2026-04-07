@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Indeevar Yadavalli</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f0f0f;
+      --bg2: #161616;
+      --bg3: #1e1e1e;
+      --text: #f0ede6;
+      --muted: #888880;
+      --accent: #c9a96e;
+      --accent2: #8ab4a0;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(15,15,15,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 4rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 40%, rgba(201,169,110,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 70%, rgba(138,180,160,0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 1.0;
+      color: var(--text);
+      margin-bottom: 2rem;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      max-width: 520px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+
+    .hero-desc strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.8rem;
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0f0f0f;
+      font-weight: 500;
+    }
+
+    .btn-primary:hover { background: #d4b47e; }
+
+    .btn-ghost {
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .btn-ghost:hover { border-color: var(--muted); color: var(--text); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      right: 4rem;
+      writing-mode: vertical-rl;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0.5;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 7rem 4rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+    }
+
+    .about-text p strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    .tag {
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.9rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      border-radius: 1px;
+    }
+
+    .about-aside {
+      padding-top: 0.5rem;
+    }
+
+    .aside-block {
+      margin-bottom: 2.5rem;
+    }
+
+    .aside-block h4 {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.8rem;
+      font-weight: 400;
+    }
+
+    .aside-block p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      margin-top: 1rem;
+    }
+
+    .project-card {
+      background: var(--bg);
+      padding: 2.5rem 2rem;
+      transition: background 0.2s;
+    }
+
+    .project-card:hover { background: var(--bg2); }
+
+    .project-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 0.85rem;
+      color: var(--accent);
+      opacity: 0.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-title {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+      line-height: 1.4;
+    }
+
+    .project-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-impact {
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      color: var(--accent2);
+      text-transform: uppercase;
+    }
+
+    /* INTERESTS */
+    .interests-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 1rem;
+    }
+
+    .interest-block h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    .interest-block p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    .interest-divider {
+      width: 2rem;
+      height: 1px;
+      background: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    /* CONTACT */
+    .contact-inner {
+      max-width: 560px;
+    }
+
+    .contact-inner p {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.2rem;
+      transition: all 0.2s;
+    }
+
+    .contact-link:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ANIMATIONS */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 0.8s forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.25s; }
+    .delay-3 { animation-delay: 0.4s; }
+    .delay-4 { animation-delay: 0.55s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .hero { padding: 0 1.5rem 5rem; }
+      section { padding: 5rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .interests-split { grid-template-columns: 1fr; gap: 2.5rem; }
+      footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+      .hero-scroll { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">IY</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#interests">Beyond</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <p class="hero-eyebrow fade-in">Hyderabad, India</p>
+    <h1 class="hero-name fade-in delay-1">Indeevar<br /><em>Yadavalli</em></h1>
+    <p class="hero-desc fade-in delay-2">
+      Operational thinker. <strong>Driving efficiency, adoption, and improvement</strong>
+      at Amazon — and building toward something bigger on the side.
+      Films, screenplays, and the occasional deep thought.
+    </p>
+    <div class="hero-cta fade-in delay-3">
+      <a href="#work" class="btn btn-primary">See My Work</a>
+      <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+    <span class="hero-scroll">Scroll</span>
+  </section>
+
+  <section id="about">
+    <p class="section-label">About</p>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 class="section-title">The person<br />behind the work</h2>
+        <p>
+          I'm a <strong>Technical & Customer Service Associate at Amazon</strong> with over
+          four years of experience — but I've never been content with just doing the job.
+          I find the gaps, build the solutions, and make sure the work actually lands.
+        </p>
+        <p>
+          Three self-initiated projects. Operational escalations. AI adoption recognized
+          at the site leader level. UI/UX recommendations that made it into the final build.
+          None of it was asked of me — <strong>that's the point.</strong>
+        </p>
+        <p>
+          Currently working toward AWS Cloud Practitioner certification and a move into
+          Senior Associate or Leadership roles — not because I've been told to, but because
+          I've outgrown where I am.
+        </p>
+        <div class="about-tags">
+          <span class="tag">Operational Efficiency</span>
+          <span class="tag">AI Tools Adoption</span>
+          <span class="tag">Process Improvement</span>
+          <span class="tag">AWS Cloud (In Progress)</span>
+          <span class="tag">Data Analysis</span>
+        </div>
+      </div>
+      <div class="about-aside">
+        <div class="aside-block">
+          <h4>Currently</h4>
+          <p>Technical & Customer Service Associate, Amazon — Hyderabad</p>
+        </div>
+        <div class="aside-block">
+          <h4>Learning</h4>
+          <p>AWS Cloud Practitioner Essentials — working toward certification</p>
+        </div>
+        <div class="aside-block">
+          <h4>Building toward</h4>
+          <p>Senior Associate / Leadership (L5/L6) roles in operations or tech-adjacent domains</p>
+        </div>
+        <div class="aside-block">
+          <h4>On the side</h4>
+          <p>Writing screenplays. Watching films with intent. Developing a directorial vision rooted in Telugu cinema with global scope.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <p class="section-label">Work</p>
+    <h2 class="section-title">Projects I built<br />without being asked</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <p class="project-num">01</p>
+        <h3 class="project-title">Trend Analysis & Reporting System</h3>
+        <p class="project-desc">
+          Identified patterns in operational data independently, built a structured
+          reporting framework, and escalated findings that led to corrective action
+          at the operations level.
+        </p>
+        <p class="project-impact">Led to operational escalation</p>
+      </div>
+      <div class="project-card">
+        <p class="project-num">02</p>
+        <h3 class="project-title">AI Tools Adoption Initiative</h3>
+        <p class="project-desc">
+          Championed the adoption of AI tools across the team. The initiative was
+          recognized by site leaders and featured in an internal article as a model
+          for how technology adoption should be driven from the ground up.
+        </p>
+        <p class="project-impact">Recognized by site leadership</p>
+      </div>
+      <div class="project-card">
+        <p class="project-num">03</p>
+        <h3 class="project-title">UI/UX Workflow Study</h3>
+        <p class="project-desc">
+          Conducted an independent study of internal workflow interfaces, identified
+          friction points, and proposed targeted improvements. Recommendations were
+          reviewed and incorporated into the final interface updates.
+        </p>
+        <p class="project-impact">Incorporated into final build</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="interests">
+    <p class="section-label">Beyond work</p>
+    <h2 class="section-title">The other half</h2>
+    <div class="interests-split">
+      <div class="interest-block">
+        <div class="interest-divider"></div>
+        <h3>Cinema & Storytelling</h3>
+        <p>
+          I'm working toward directing films in the Tollywood space — but with a vision
+          that travels. Hollywood-level production standards, Telugu soul. Currently writing
+          my first screenplay: a covert ops action story in the vein of Ghost Recon.
+          A second is already in planning. Seven or eight more ideas live in a folder
+          waiting their turn.
+        </p>
+      </div>
+      <div class="interest-block">
+        <div class="interest-divider"></div>
+        <h3>Analytical Curiosity</h3>
+        <p>
+          Whether it's breaking down a film's structure or reverse-engineering why
+          an operational process fails, I'm drawn to understanding how things work
+          at a deeper level than the surface suggests. That's the common thread
+          across everything I do — professional, creative, or otherwise.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <div class="contact-inner">
+      <h2 class="section-title">Let's connect</h2>
+      <p>
+        Whether it's a conversation about operations, leadership, filmmaking, or
+        something I haven't thought of yet — I'm open to it.
+      </p>
+      <div class="contact-links">
+        <a href="https://github.com/indeevar-y" class="contact-link" target="_blank">GitHub</a>
+        <a href="mailto:your@email.com" class="contact-link">Email</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Indeevar Yadavalli — Hyderabad, India</p>
+    <p>Built with intention. Hosted free on GitHub Pages.</p>
+  </footer>
+
+</body>
+</html>
